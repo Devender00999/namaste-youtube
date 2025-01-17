@@ -1,14 +1,25 @@
 import { Icon } from "@iconify/react";
 import LightLogo from "../assets/logo-light.png";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/appSlice";
 
 const Header = () => {
+   const dispatch = useDispatch();
+
+   const handleToggleMenu = () => {
+      dispatch(toggleMenu());
+   };
+
    return (
       <div className="flex p-3 items-center h-14 overflow-hidden justify-between gap-5">
-         <div className="flex items-center  gap-6 min-w-52">
-            <div className="p-1 rounded-full hover:bg-gray-100 cursor-pointer">
-               <Icon fontSize={28} icon="ion:menu-outline" className="" />
-            </div>
-            <img className="w-28" src={LightLogo} />
+         <div className="flex items-center  gap-3 min-w-52">
+            <Icon
+               onClick={handleToggleMenu}
+               className="hover:bg-[#f2f2f2]  w-10 h-10 p-2 cursor-pointer rounded-full"
+               fontSize={28}
+               icon="ion:menu-outline"
+            />
+            <img className="w-[90px] h-auto object-cover" src={LightLogo} />
          </div>
          <div
             className="flex-1 flex justify-center"

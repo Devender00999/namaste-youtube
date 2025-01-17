@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useSelector } from "react-redux";
 
 type MenuItem = {
    name: string;
@@ -12,6 +13,8 @@ type Menu = {
 };
 
 const Sidebar = () => {
+   const isMenuOpen = useSelector((store: any) => store.app.isMenuOpen);
+
    const menu: Menu[] = [
       {
          subMenu: [
@@ -27,6 +30,12 @@ const Sidebar = () => {
                icon: "arcticons:youtube-music",
                link: "/",
             },
+         ],
+      },
+      {
+         subMenu: [
+            { name: "You", icon: "solar:user-circle-linear", link: "/" },
+            { name: "History", icon: "material-symbols:history", link: "/" },
          ],
       },
       {
@@ -73,10 +82,14 @@ const Sidebar = () => {
       },
    ];
    return (
-      <div className="w-60 h-[calc(100%-56px)] p-3">
-         {menu?.map((menuItem) => {
+      <div
+         className={`${
+            isMenuOpen ? "w-60  p-3" : "w-16 p-1"
+         } h-[calc(100%-56px)]`}
+      >
+         {menu?.slice(0, !isMenuOpen ? 2 : undefined)?.map((menuItem) => {
             return (
-               <div className="border-b-[1px] border-[#0000001a] py-2">
+               <div className="border-b-[1px] border-[#0000001a] py-2 first:pt-0">
                   {menuItem.heading && (
                      <span className="inline-block font-medium px-3 w-full pt-[6px] pb-1 p-[6px 12px 4px]">
                         Explore
@@ -86,7 +99,11 @@ const Sidebar = () => {
                      {menuItem.subMenu?.map((subMenuItem) => {
                         return (
                            <li
-                              className={`flex h-10 items-center gap-6 w-full px-3 ${
+                              className={`flex cursor-pointer ${
+                                 isMenuOpen
+                                    ? "h-10  px-3  gap-6   w-full"
+                                    : "w-16 flex-col px-0 gap-[5px] pt-4 pb-[14px]"
+                              } items-center ${
                                  subMenuItem.name === "Home"
                                     ? "bg-[#f2f2f2]"
                                     : ""
@@ -96,7 +113,11 @@ const Sidebar = () => {
                                  icon={subMenuItem.icon || ""}
                                  className="text-2xl"
                               />
-                              <span className="text-sm">
+                              <span
+                                 className={`text-ellipsis overflow-hidden text-nowrap ${
+                                    isMenuOpen ? "text-sm" : "text-[10px]"
+                                 }`}
+                              >
                                  {subMenuItem.name}
                               </span>
                            </li>
