@@ -2,7 +2,7 @@ import ButtonList from "./ButtonList";
 
 const MainContainer = () => {
    return (
-      <div>
+      <div className="flex: 1">
          <ButtonList />
          <ButtonList />
       </div>
