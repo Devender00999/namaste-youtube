@@ -34,9 +34,9 @@ const ButtonList = () => {
       // "Celebrity Gossip",
    ];
    return (
-      <div className="flex w-full overflow-scroll gap-3 h-14 items-center px-6">
+      <div className="flex w-full overflow-scroll gap-3 h-14 items-center">
          {buttons.map((button) => (
-            <Button title={button} selected={button === "All"} />
+            <Button key={button} title={button} selected={button === "All"} />
          ))}
       </div>
    );

@@ -87,9 +87,12 @@ const Sidebar = () => {
             isMenuOpen ? "w-60  p-3" : "w-16 p-1"
          } h-[calc(100%-56px)]`}
       >
-         {menu?.slice(0, !isMenuOpen ? 2 : undefined)?.map((menuItem) => {
+         {menu?.slice(0, !isMenuOpen ? 2 : undefined)?.map((menuItem, idx) => {
             return (
-               <div className="border-b-[1px] border-[#0000001a] py-2 first:pt-0">
+               <div
+                  key={menuItem?.heading || "" + idx}
+                  className="border-b-[1px] border-[#0000001a] py-2 first:pt-0"
+               >
                   {menuItem.heading && (
                      <span className="inline-block font-medium px-3 w-full pt-[6px] pb-1 p-[6px 12px 4px]">
                         Explore
@@ -99,6 +102,7 @@ const Sidebar = () => {
                      {menuItem.subMenu?.map((subMenuItem) => {
                         return (
                            <li
+                              key={subMenuItem.name}
                               className={`flex cursor-pointer ${
                                  isMenuOpen
                                     ? "h-10  px-3  gap-6   w-full"

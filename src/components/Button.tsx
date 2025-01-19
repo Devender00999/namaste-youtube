@@ -7,7 +7,7 @@ const Button = ({
 }) => {
    return (
       <div
-         className={`rounded-lg h-8 px-3 font-medium flex text-sm w-max items-center  bg-[#f2f2f2] ${
+         className={`rounded-lg cursor-pointer h-8 px-3 font-medium flex text-sm w-max items-center  bg-[#f2f2f2] ${
             selected ? "bg-black text-white" : ""
          }`}
       >
