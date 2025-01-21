@@ -13,8 +13,10 @@ const VideoContainer = () => {
 
    console.log({ ytVideoList });
    return (
-      <div>
-         <VideoCard info={ytVideoList?.[0]} />
+      <div className="flex flex-wrap gap-5">
+         {ytVideoList?.map((ytVideo) => {
+            return <VideoCard key={ytVideo.id} info={ytVideo} />;
+         })}
       </div>
    );
 };
