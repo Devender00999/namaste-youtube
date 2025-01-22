@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import LightLogo from "../assets/logo-light.png";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
    const dispatch = useDispatch();
@@ -19,7 +20,9 @@ const Header = () => {
                fontSize={28}
                icon="ion:menu-outline"
             />
-            <img className="w-[90px] h-auto object-cover" src={LightLogo} />
+            <Link to="/">
+               <img className="w-[90px] h-auto object-cover" src={LightLogo} />
+            </Link>
          </div>
          <div
             className="flex-1 flex justify-center"

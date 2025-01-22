@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 type MenuItem = {
    name: string;
@@ -101,29 +102,31 @@ const Sidebar = () => {
                   <ul className="">
                      {menuItem.subMenu?.map((subMenuItem) => {
                         return (
-                           <li
-                              key={subMenuItem.name}
-                              className={`flex cursor-pointer ${
-                                 isMenuOpen
-                                    ? "h-10  px-3  gap-6   w-full"
-                                    : "w-16 flex-col px-0 gap-[5px] pt-4 pb-[14px]"
-                              } items-center ${
-                                 subMenuItem.name === "Home"
-                                    ? "bg-[#f2f2f2]"
-                                    : ""
-                              } rounded-lg hover:bg-[#f2f2f2] cursor-pointer `}
-                           >
-                              <Icon
-                                 icon={subMenuItem.icon || ""}
-                                 className="text-2xl"
-                              />
-                              <span
-                                 className={`text-ellipsis overflow-hidden text-nowrap ${
-                                    isMenuOpen ? "text-sm" : "text-[10px]"
-                                 }`}
+                           <li key={subMenuItem.name}>
+                              <Link
+                                 className={`flex cursor-pointer ${
+                                    isMenuOpen
+                                       ? "h-10  px-3  gap-6   w-full"
+                                       : "w-16 flex-col px-0 gap-[5px] pt-4 pb-[14px]"
+                                 } items-center ${
+                                    subMenuItem.name === "Home"
+                                       ? "bg-[#f2f2f2]"
+                                       : ""
+                                 } rounded-lg hover:bg-[#f2f2f2] cursor-pointer `}
+                                 to={subMenuItem.link}
                               >
-                                 {subMenuItem.name}
-                              </span>
+                                 <Icon
+                                    icon={subMenuItem.icon || ""}
+                                    className="text-2xl"
+                                 />
+                                 <span
+                                    className={`text-ellipsis overflow-hidden text-nowrap ${
+                                       isMenuOpen ? "text-sm" : "text-[10px]"
+                                    }`}
+                                 >
+                                    {subMenuItem.name}
+                                 </span>
+                              </Link>
                            </li>
                         );
                      })}
