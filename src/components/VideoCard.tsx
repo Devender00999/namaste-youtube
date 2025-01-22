@@ -8,7 +8,10 @@ dayjs.extend(relativeTime);
 const VideoCard = ({ info }: { info: YouTubeVideo }) => {
    console.log({ info });
    return (
-      <Link to="/browse" className="flex flex-col gap-2 max-w-80 pt-3">
+      <Link
+         to={`/watch?v=${info.id}`}
+         className="flex flex-col gap-2 max-w-80 pt-3"
+      >
          <div className=" overflow-hidden rounded-xl">
             <img
                className="rounded-xl"

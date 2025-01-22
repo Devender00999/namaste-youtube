@@ -1,6 +1,8 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { closeMenu } from "../utils/appSlice";
 
 type MenuItem = {
    name: string;
@@ -15,6 +17,11 @@ type Menu = {
 
 const Sidebar = () => {
    const isMenuOpen = useSelector((store: any) => store.app.isMenuOpen);
+   const dispatch = useDispatch();
+
+   useEffect(() => {
+      dispatch(closeMenu());
+   }, []);
 
    const menu: Menu[] = [
       {
@@ -109,7 +116,7 @@ const Sidebar = () => {
                                        ? "h-10  px-3  gap-6   w-full"
                                        : "w-16 flex-col px-0 gap-[5px] pt-4 pb-[14px]"
                                  } items-center ${
-                                    subMenuItem.name === "Home"
+                                    subMenuItem.name === "Home" && isMenuOpen
                                        ? "bg-[#f2f2f2]"
                                        : ""
                                  } rounded-lg hover:bg-[#f2f2f2] cursor-pointer `}
