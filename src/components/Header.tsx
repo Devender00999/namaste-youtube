@@ -1,16 +1,21 @@
 import { Icon } from "@iconify/react";
 import LightLogo from "../assets/logo-light.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { cacheSuggestions } from "../utils/searchSlice";
 
 const Header = () => {
    const dispatch = useDispatch();
+
    const [searchQuery, setSearchQuery] = useState("");
    const [suggestions, setSuggestions] = useState([]);
    const [showSuggestions, setShowSuggestions] = useState(false);
+   const cachedResults = useSelector(
+      (state: any) => state?.search?.suggestions
+   );
 
    const handleToggleMenu = () => {
       dispatch(toggleMenu());
@@ -24,7 +29,11 @@ const Header = () => {
       let timer = 0;
 
       timer = setTimeout(() => {
-         getSearchSuggestions();
+         if (cachedResults[searchQuery]) {
+            setSuggestions(cachedResults[searchQuery]);
+         } else {
+            getSearchSuggestions();
+         }
       }, 200);
 
       return () => {
@@ -36,6 +45,8 @@ const Header = () => {
       const res = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const data = await res.json();
       setSuggestions(data[1]);
+      if (searchQuery.length > 0)
+         dispatch(cacheSuggestions({ [searchQuery]: data[1] }));
    };
 
    return (
@@ -80,7 +91,9 @@ const Header = () => {
                                     {suggestions?.map((suggestion) => (
                                        <li
                                           onClick={() => {
-                                             console.log({ suggetion: suggestion });
+                                             console.log({
+                                                suggetion: suggestion,
+                                             });
                                              setSearchQuery(suggestion);
                                              setShowSuggestions(false);
                                           }}
