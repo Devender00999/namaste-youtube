@@ -10,7 +10,7 @@ const VideoCard = ({ info }: { info: YouTubeVideo }) => {
    return (
       <Link
          to={`/watch?v=${info.id}`}
-         className="flex flex-col gap-2 max-w-80 pt-3"
+         className="flex flex-col gap-2 max-w-72 pt-3"
       >
          <div className=" overflow-hidden rounded-xl">
             <img
