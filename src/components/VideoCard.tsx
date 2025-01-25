@@ -3,6 +3,7 @@ import YouTubeVideo from "../utils/types/YTVideo";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Link } from "react-router-dom";
+import { formatNumberYouTubeStyle } from "../utils/format";
 dayjs.extend(relativeTime);
 
 const VideoCard = ({ info }: { info: YouTubeVideo }) => {
@@ -35,7 +36,12 @@ const VideoCard = ({ info }: { info: YouTubeVideo }) => {
                <div className="flex gap flex-col text-sm text-[#606060]">
                   <div>{info.snippet.channelTitle}</div>
                   <div className="flex gap-1 ">
-                     <span>{info.statistics.viewCount}</span>
+                     <span>
+                        {formatNumberYouTubeStyle(
+                           Number(info?.statistics?.viewCount) || 0
+                        )}{" "}
+                        views
+                     </span>
                      <span>•</span>
                      {dayjs(info?.snippet?.publishedAt).fromNow()}
                   </div>
