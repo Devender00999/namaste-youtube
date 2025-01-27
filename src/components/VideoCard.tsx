@@ -1,17 +1,22 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import YouTubeVideo from "../utils/types/YTVideo";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { formatNumberYouTubeStyle } from "../utils/format";
+import YouTubeVideo from "../utils/types/YTVideo";
+import { addCurrentVideo } from "../utils/videoSlice";
 dayjs.extend(relativeTime);
 
 const VideoCard = ({ info }: { info: YouTubeVideo }) => {
-   console.log({ info });
+   const dispatch = useDispatch();
+
    return (
       <Link
          to={`/watch?v=${info.id}`}
          className="flex flex-col gap-2 max-w-72 pt-3"
+         state={info}
+         onClick={() => dispatch(addCurrentVideo(info))}
       >
          <div className=" overflow-hidden rounded-xl">
             <img

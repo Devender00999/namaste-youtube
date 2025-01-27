@@ -11,7 +11,6 @@ const VideoContainer = () => {
 
    if (!ytVideoList) return null;
 
-   console.log({ ytVideoList });
    return (
       <div className="flex flex-wrap gap-5">
          {ytVideoList?.map((ytVideo) => {
