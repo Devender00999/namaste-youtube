@@ -8,3 +8,5 @@ const YOUTUBE_CHANNEL_API = `${
 }?part=snippet,statistics,brandingSettings&key=${YOUTUBE_API_KEY}`;
 
 export { YOUTUBE_CHANNEL_API, YOUTUBE_SEARCH_API, YOUTUBE_VIDEO_API };
+
+export const LIVE_CHAT_COUNT = 25;
