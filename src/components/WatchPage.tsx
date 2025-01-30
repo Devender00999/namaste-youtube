@@ -9,6 +9,7 @@ import YouTubeChannel from "../utils/types/YTChannel";
 import YouTubeVideo from "../utils/types/YTVideo";
 import CommentsContainer from "./CommentsContainer";
 import "./styles.css";
+import LiveChat from "./LiveChat";
 
 const WatchPage = () => {
    const [searchParams] = useSearchParams();
@@ -98,8 +99,9 @@ const WatchPage = () => {
             </div>
             <CommentsContainer />
          </div>
-         <div className="lg:w-[400px] min-w-[332px] max-w-[402px]">
-            <div className="w-full overflow-auto">{/* <ButtonList /> */}</div>
+         <div className="lg:w-[400px] min-w-[332px] max-w-[402px] mt-3">
+            {/* <div className="w-full overflow-auto"><ButtonList /></div> */}
+            <LiveChat />
          </div>
       </div>
    );
