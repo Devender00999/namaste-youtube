@@ -3,6 +3,8 @@ import "./App.css";
 import Body from "./components/Body";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
+import Demo from "./components/Demo";
+import Demo2 from "./components/Demo2";
 
 function App() {
    const router = createBrowserRouter([
@@ -17,6 +19,14 @@ function App() {
             {
                path: "watch",
                element: <WatchPage />,
+            },
+            {
+               path: "demo",
+               element: <Demo />,
+            },
+            {
+               path: "demo2",
+               element: <Demo2 />,
             },
          ],
       },
