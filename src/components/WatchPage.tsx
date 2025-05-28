@@ -10,6 +10,7 @@ import YouTubeVideo from "../utils/types/YTVideo";
 import CommentsContainer from "./CommentsContainer";
 import "./styles.css";
 import LiveChat from "./LiveChat";
+import { useState } from "react";
 
 const WatchPage = () => {
    const [searchParams] = useSearchParams();
@@ -21,6 +22,8 @@ const WatchPage = () => {
    const channelInfo: YouTubeChannel = useSelector(
       (state: any) => state?.ytVideos?.channelInfo
    );
+
+   const [showFull, setShowFull] = useState(false);
 
    useYTVideo(videoId || "");
    useYTChannel(currentVideo?.snippet?.channelId);
@@ -85,7 +88,11 @@ const WatchPage = () => {
                         </div>
                      </div>
                   </div>
-                  <pre className="text-sm h-28 bg-[#0000000d] p-3 rounded-xl">
+                  <pre
+                     className={`text-sm ${
+                        showFull ? "h-max pb-8" : `h-[6.1rem] overflow-hidden`
+                     } relative bg-[#0000000d] p-3 rounded-xl`}
+                  >
                      <p className="font-medium">
                         {currentVideo?.statistics?.viewCount} views{" "}
                         {dayjs(currentVideo?.snippet?.publishedAt).format(
@@ -94,12 +101,17 @@ const WatchPage = () => {
                         ,
                      </p>
                      {currentVideo?.snippet?.description}
+                     <p className="cursor-pointer h-7 flex items-center text-black font-medium bg-[#f2f2f2] w-full absolute bottom-[0px]">
+                        <span onClick={() => setShowFull((prev) => !prev)}>
+                           {showFull ? "Show less" : "...more"}
+                        </span>
+                     </p>
                   </pre>
                </div>
             </div>
             <CommentsContainer />
          </div>
-         <div className="lg:w-[400px] min-w-[332px] max-w-[402px] mt-3">
+         <div className="lg:w-[400px] md:hidden  min-w-[332px] max-w-[402px] mt-3">
             {/* <div className="w-full overflow-auto"><ButtonList /></div> */}
             <LiveChat />
          </div>
