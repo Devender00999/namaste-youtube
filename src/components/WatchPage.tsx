@@ -28,7 +28,7 @@ const WatchPage = () => {
    useYTVideo(videoId || "");
    useYTChannel(currentVideo?.snippet?.channelId);
    return (
-      <div className="mx-6 py-2 pt-3 flex w-full h-[calc(100vh-56px)] flex-col lg:flex-row 2xl:px-16 gap-[26px]">
+      <div className="mx-6 py-2 pt-3 flex w-full flex-col lg:flex-row 2xl:px-16 gap-[26px]">
          <div className="w-full 2xl:px-[19px] flex flex-col flex-1 h-full ">
             <div className="max-h-[720px]  mt-3 min-w-[calc(360px*(16/9))] max-w-[calc((100vh-56px-24px-136px)*(16/9))] ">
                <iframe
@@ -101,7 +101,7 @@ const WatchPage = () => {
                         ,
                      </p>
                      {currentVideo?.snippet?.description}
-                     <p className="cursor-pointer h-7 flex items-center text-black font-medium bg-[#f2f2f2] w-full absolute bottom-[0px]">
+                     <p className="cursor-pointer h-7 flex items-center text-black font-medium bg-[#f2f2f2] px-5 w-full left-0 absolute bottom-[0px]">
                         <span onClick={() => setShowFull((prev) => !prev)}>
                            {showFull ? "Show less" : "...more"}
                         </span>
@@ -111,7 +111,7 @@ const WatchPage = () => {
             </div>
             <CommentsContainer />
          </div>
-         <div className="lg:w-[400px] md:hidden  min-w-[332px] max-w-[402px] mt-3">
+         <div className="lg:w-[400px]  min-w-[332px] max-w-[402px] mt-3">
             {/* <div className="w-full overflow-auto"><ButtonList /></div> */}
             <LiveChat />
          </div>
