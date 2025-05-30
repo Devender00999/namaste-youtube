@@ -29,7 +29,7 @@ const WatchPage = () => {
    useYTChannel(currentVideo?.snippet?.channelId);
    return (
       <div className="mx-6 py-2 pt-3 flex w-full flex-col lg:flex-row 2xl:px-16 gap-[26px]">
-         <div className="w-full 2xl:px-[19px] flex flex-col flex-1 h-full ">
+         <div className="w-m 2xl:px-[19px] flex flex-col flex-1 h-full ">
             <div className="max-h-[720px]  mt-3 min-w-[calc(360px*(16/9))] max-w-[calc((100vh-56px-24px-136px)*(16/9))] ">
                <iframe
                   className="w-full h-full rounded-xl aspect-video"
@@ -72,17 +72,21 @@ const WatchPage = () => {
                            </div>
                         </div>
                      </div>
-                     <div className="flex rounded-full bg-[#0000000d] items-center h-9 gap-2">
-                        <button className="flex ml-4 hover:bg-[rgba(0,0,0,0.1)]  items-center gap-2">
-                           <Icon icon="mdi:like" fontSize={18} />
+                     <div className="flex rounded-full bg-[#0000000d] items-center h-9 pr-3 gap-2">
+                        <button className="flex ml-4   items-center gap-2">
+                           <Icon
+                              icon="mdi:like"
+                              className="cursor-pointer"
+                              fontSize={18}
+                           />
                            {formatNumberYouTubeStyle(
                               currentVideo?.statistics?.likeCount
                            )}
                         </button>
                         <div className="h-4 border-l-[1px] border-l-[#0000001a]"></div>
-                        <div className="flex w-57t44s hover:bg-[rgba(0,0,0,0.1)] items-center">
+                        <div className="flex w-57t44s items-center">
                            <Icon
-                              className="hover:bg-[rgba(0,0,0,0.1)] "
+                              className="cursor-pointer"
                               icon="mdi:dislike"
                            />
                         </div>
